@@ -1,0 +1,564 @@
+/* .wrapper {
+  display: flex;
+  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  width: 55%;
+  background-color: #008cba;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container img {
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rightPane {
+  width: 50%;
+  background-color: #90e0ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loginBox {
+  width: 80%;
+  max-width: 350px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.loginTitle {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 14px;
+  background-color: #f1fcff;
+}
+
+.forget {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  color: #0077aa;
+  margin-bottom: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.loginBth {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #008cba;
+  color: white;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.loginBth:hover {
+  background-color: #5aa894;
+}
+
+/* มีของเดิมของคุณอยู่แล้ว ขยายเพิ่มเฉพาะส่วนด้านล่าง */
+/* 
+.orDivider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  color: #888;
+  font-size: 12px;
+}
+.orDivider span {
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.orDivider em {
+  font-style: normal;
+}
+
+.providers {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.oauthBtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.05s ease;
+}
+.oauthBtn:active {
+  transform: scale(0.99);
+}
+
+.lineBtn {
+  background: #06c755; 
+  color: #fff;
+}
+.googleBtn {
+  background: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+}  */
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap');
+
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  height: 100vh;
+}
+
+.container {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  max-width: 960px;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.formContainer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  background: #fff;
+  padding: 40px 50px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  scroll-padding-top: 40px;
+  scroll-behavior: smooth;
+}
+
+.signInContainer {
+  left: 0;
+  z-index: 2;
+}
+
+.signUpContainer {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  padding-top: 40px;
+  scroll-padding-top: 40px;
+}
+
+.containerRightPanelActive .signInContainer {
+  transform: translateX(100%);
+}
+
+.containerRightPanelActive .signUpContainer {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+.overlayContainer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.containerRightPanelActive .overlayContainer {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: linear-gradient(to right, #000066, #000088);
+  background-size: cover;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+  display: flex;
+  flex-direction: row;
+}
+
+.containerRightPanelActive .overlay {
+  transform: translateX(50%);
+}
+
+.overlayPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  width: 50%;
+}
+
+.overlayPanel .formTitle {
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.overlayPanel p {
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  margin-bottom: 50px;
+}
+
+.overlayLeft,
+.overlayRight {
+  transform: translateX(0);
+}
+
+.formStyle {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 60px 30px 20px;
+  text-align: center;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.formTitle {
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2.6rem;
+  text-align: center;
+}
+
+.formInput {
+  background-color: #eee;
+  border: none;
+  padding: 16px 26px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.forgotPasswordLink {
+  color: #333;
+  font-size: 1.3rem;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.formButton {
+  border: none;
+  box-shadow: none !important;
+  padding: 16px 44px;
+  background-color: #000066;
+  color: white;
+  border-radius: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background-color 0.3s;
+}
+
+.formButton:hover {
+  background-color: #00004d;
+}
+
+.formButton:active {
+  transform: scale(0.95);
+}
+
+.formButton:focus {
+  outline: none;
+}
+
+.formButton:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btnOval {
+  border-radius: 20px;
+}
+
+.ghostButton {
+  background-color: white;
+  color: #000066;
+  border: 2px solid white;
+  border-radius: 999px;
+  padding: 12px 32px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ghostButton:hover {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+
+.rememberMeContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-start;
+  margin: -5px 0 -10px 2px;
+}
+
+.rememberMeCheckbox {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.rememberMeLabel {
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.recaptchaWrapper {
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  padding: 0 10px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.iconCircleButton {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.iconCircleButton:hover {
+  transform: scale(1.1);
+}
+
+.socialLoginButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 0px;
+}
+
+.toggleButtons {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.mobileWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    max-width: 100vw;
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    border-radius: 0;
+    position: static;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .formContainer,
+  .overlayContainer {
+    position: static;
+    width: 100vw;
+    height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 24px 10px;
+    box-sizing: border-box;
+  }
+
+  .signInContainer,
+  .signUpContainer {
+    width: 100vw;
+    position: static;
+    opacity: 1 !important;
+    z-index: auto;
+    transform: none !important;
+    display: block;
+  }
+
+  .overlayContainer,
+  .overlay {
+    display: none !important;
+  }
+
+  .formTitle {
+    font-size: 2rem;
+  }
+
+  .formInput {
+    font-size: 1rem;
+    min-height: 40px;
+    padding: 10px 12px;
+  }
+
+  .formButton {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    min-height: unset !important;
+    height: auto !important;
+    display: block;
+  }
+
+  .formStyle {
+    margin-bottom: 0 !important;
+    padding-bottom: 20px;
+  }
+}
+
+.MuiAutocomplete-root {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.MuiInputBase-root {
+  background-color: #eee !important;
+  border-radius: 5px !important;
+  padding: 16px 26px !important;
+  font-size: 1.4rem !important;
+  box-sizing: border-box;
+  min-height: 60px !important;
+  line-height: 1.6 !important;
+  width: 100% !important;
+}
+.passwordInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInputWrapper input {
+  padding-right: 50px; /* เพื่อเว้นพื้นที่ให้ไอคอน */
+}
+
+.togglePasswordIcon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #888;
+}

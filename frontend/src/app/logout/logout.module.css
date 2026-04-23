@@ -1,0 +1,117 @@
+/* พื้นหลัง – Glass Light + Gradient Soft */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(140deg, #edf4ff, #f8fbff);
+  font-family: "Prompt", sans-serif;
+  padding: 20px;
+}
+
+/* Glass Card */
+.card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 45px 55px;
+  border-radius: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  width: 400px;
+  animation: fadeScale 0.35s ease;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Animation */
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Avatar + Glow Ring */
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 18px;
+  display: block;
+  box-shadow: 0 0 0 6px rgba(80, 160, 255, 0.25),
+              0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+/* ชื่อ */
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1b2a4a;
+  margin-bottom: 10px;
+}
+
+/* คำถาม */
+.question {
+  font-size: 17px;
+  color: #333;
+  margin: 20px 0 36px;
+}
+
+/* ปุ่ม */
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* ปุ่มยกเลิก – เทาเนียน */
+.cancelBtn {
+  flex: 1;
+  background: #e6e6e6;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.cancelBtn:hover {
+  background: #d4d4d4;
+}
+
+/* ปุ่มออกจากระบบ – Gradient เรียบหรู */
+.logoutBtn {
+  flex: 1;
+  background: linear-gradient(135deg, #ff4545, #d62828);
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 4px 14px rgba(214, 40, 40, 0.35);
+}
+
+.logoutBtn:hover {
+  background: linear-gradient(135deg, #ff5f5f, #c71f1f);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(214, 40, 40, 0.45);
+}
+
+/* Loading */
+.loading {
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 40px;
+}
