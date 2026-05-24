@@ -19,6 +19,7 @@ app.use("/api/users", require("./routes/(userlogin)/userlogin"));
 app.use("/api/users", require("./routes/(userlogin)/password"));
 app.use("/api", require("./routes/(userlogin)/google"));
 app.use("/api", require("./routes/(userlogin)/line"));
+app.use("/api/provinces", require("./routes/provinces"));
 
 // === Core APIs ===
 app.use("/api", require("./routes/users"));
@@ -29,6 +30,7 @@ app.use("/api/appointments", require("./routes/appointments"));
 app.use("/api/calendar", require("./routes/calendar"));
 app.use("/api", require("./routes/feedbacks"));
 app.use("/api", require("./routes/help"));
+app.use("/api", require("./routes/slots"));
 
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // ✅ ให้เบราว์เซอร์เข้าถึงไฟล์ได้
