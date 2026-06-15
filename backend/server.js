@@ -1,8 +1,10 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+// Ensure a consistent JWT secret fallback across all modules during local development
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_for_local';
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -30,7 +32,7 @@ app.use("/api/appointments", require("./routes/appointments"));
 app.use("/api/calendar", require("./routes/calendar"));
 app.use("/api", require("./routes/feedbacks"));
 app.use("/api", require("./routes/help"));
-app.use("/api", require("./routes/slots"));
+app.use("/api/slots", require("./routes/slots"));
 
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // ✅ ให้เบราว์เซอร์เข้าถึงไฟล์ได้
