@@ -2,7 +2,7 @@
 const jwt = require("jsonwebtoken");
 const pool = require("./db");
 
-const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
+const JWT_SECRET = process.env.JWT_SECRET || "dev_secret_for_local";
 
 /* ---------- Token helpers ---------- */
 // สร้างโทเค็น
