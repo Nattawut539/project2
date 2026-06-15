@@ -8,14 +8,18 @@ const { authRequired, requireStaff, withContext } = require("../tools/_utils");
 router.get("/medical/my", authRequired, async (req, res, next) => {
   try {
     await withContext(req, async (client) => {
-      const { rows } = await client.query(`
+      const userId = req.user && req.user.user_id;
+      const { rows } = await client.query(
+        `
         SELECT record_id, user_id, visit_date, symptoms, diagnosis, treatment,
                medications, notes, doctor_id, follow_up_date, visibility,
                created_at, updated_at
         FROM clinic.medical_records
-        WHERE user_id = clinic.app_user_id()
+        WHERE user_id = $1
         ORDER BY visit_date DESC
-      `);
+      `,
+        [userId]
+      );
       res.json(rows);
     });
   } catch (e) {
